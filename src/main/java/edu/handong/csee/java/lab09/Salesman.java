@@ -13,7 +13,7 @@ package edu.handong.csee.java.lab09;
 public class Salesman {
 	private String name; // name of Salesman
 	private double sales; // sales of Salesman
-	
+
 	/**
 	 * This is the getter method for name.
 	 * <p>
@@ -24,7 +24,7 @@ public class Salesman {
 	public String getName() {
 		return name; // returns the name
 	}
-	
+
 	/**
 	 * This is the setter method for name.
 	 * <p>
@@ -35,7 +35,7 @@ public class Salesman {
 	public void setName(String name) {
 		this.name = name; // sets passed parameter as name
 	}
-	
+
 	/**
 	 * This is the getter method for sales.
 	 * <p>
@@ -46,7 +46,7 @@ public class Salesman {
 	public double getSales() {
 		return sales; // returns value of sales
 	}
-	
+
 	/**
 	 * This is the setter method for sales.
 	 * <p>
@@ -57,5 +57,5 @@ public class Salesman {
 	public void setSales(double sales) {
 		this.sales = sales; //sets passed parameter as sales
 	}
-	
+
 }

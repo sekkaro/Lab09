@@ -32,14 +32,14 @@ public class SalesReporter {
 	public static void main(String[] args) {
 		// instance of the class SalesReporter
 		SalesReporter myReporter = new SalesReporter(); // instance created using 'new' operator
-		
+
 		//various methods from instance in order 
 		myReporter.getData(); // gets data from the user of the name and sales of salesmen
 		myReporter.calculateAverageSales(); // calculates average from the sales
 		myReporter.highestSales(); // calculates the highest one from all sales
 		myReporter.printOutResults(); // prints out the report
 	}
-	
+
 	/**
 	 * This is a empty constructor of SalesReporter class.
 	 * <p>
@@ -50,10 +50,10 @@ public class SalesReporter {
 	public SalesReporter() {
 		System.out.println("Enter numer of salesman:"); // guides the user to enter the number of salesman
 		Scanner myScanner = new Scanner(System.in); // creates a scanner instance to get user inputs
-		
+
 		numOfSalesman = myScanner.nextInt(); // reads integer value from the user and stores it in numOfSalesman variable.
 	}
-	
+
 	/**
 	 * This is the getData() method that reads the detailed information of each salesman
 	 * from the user.
@@ -65,26 +65,26 @@ public class SalesReporter {
 	public void getData() {
 		// defines the datatype of team array to be of Salesman class
 		team = new Salesman[numOfSalesman]; // sets the length of team array to numOfSalesman
-		
+
 		// for loop to get to every index of team array
 		for(int i = 0 ; i < numOfSalesman ; i++) {
 			Scanner myScanner = new Scanner(System.in); // defines scanner instance to use it to read user inputs
-			
+
 			System.out.println("Enter data for associate number " + (i+1)); // guides the user what Salesman number it is
 			System.out.print("Enter name: "); // guides the user to enter the name of salesman
 			String name = myScanner.nextLine(); // reads the line as input which in turn stores it to a string name
-			
+
 			System.out.print("Enter sales: $"); // guides the user to enter the sales of salesman
 			double sales = myScanner.nextDouble(); // reads the double value which in turn stores it to a variable called sales
-			
+
 			team[i] = new Salesman(); // while running the loop over each of the index of array, let each index be an instance of the Salesman class
 			team[i].setName(name); // uses setter method to set name for that particular team array element
 			team[i].setSales(sales); // uses setter method to set sales for that particular team array element
-			
+
 		}
-		
+
 	}
-	
+
 	/**
 	 * This is the calculateAverageSales() method.
 	 * <p>
@@ -94,15 +94,15 @@ public class SalesReporter {
 	// calculateAverageSales() method
 	public void calculateAverageSales() {
 		double sum = 0; // initializes the sum as 0
-		
+
 		// for loop to cover every element of the team array
 		for(int i=0 ; i < team.length ; i++) {
 			sum = sum + team[i].getSales(); // adds all the sales by using getter method where each elements of team array are instances of Salesman class
 		}
-		
+
 		averageSales = sum/team.length; // calculates the average by dividing the calculated sum with the length of the team array and stores it to the variable defined in the class 
 	}
-	
+
 	/**
 	 * This is the highestSales() method.
 	 * <p>
@@ -111,7 +111,7 @@ public class SalesReporter {
 	// highestSales() method
 	public void highestSales() {
 		highestSales = team[0].getSales(); // first sets the highestSales to be of the first element
-		
+
 		// uses for loop to get into each index of the team array
 		for(int i=0 ; i < team.length ; i++) {
 			// if the i+1(next element) does not give over bound exception and the current element's sales was less than the next element's sales, 
@@ -119,9 +119,9 @@ public class SalesReporter {
 				highestSales = team[i+1].getSales(); // make the next element as the highest Sales
 			}
 		}
-		
+
 	}
-	
+
 	/**
 	 * This is the printOutResults() method.
 	 * <p>
@@ -132,7 +132,7 @@ public class SalesReporter {
 	public void printOutResults() {
 		System.out.println("\nAverage: $" + averageSales); // prints out the average sales that was calculated from method
 		System.out.println("Highest Sales: $" + highestSales + "\n"); // print out the highest sales that was calculated from method
-		
+
 		System.out.println("The following had the highest Sales: "); // shows the details of the Salesman who had the highest sales
 		// Since we dont know the index who had the highest Sales we run a for loop to check the whole array
 		for(int i = 0 ; i < team.length ; i++) {
@@ -143,9 +143,9 @@ public class SalesReporter {
 				System.out.println("$" + ((team[i].getSales())-(averageSales)) + " above the average."); // and show how much the Salesman had it above average
 			}
 		}
-		
+
 		System.out.println(); // prints out a \n to make it more nice and neat 
-		
+
 		System.out.println("The rest performed as follows: "); // now it shows how the rest of the elements except for the ones with highest Sale.
 		// runs a for loop to check the whole array
 		for(int i = 0 ; i < team.length ; i++) {
@@ -162,8 +162,8 @@ public class SalesReporter {
 				}
 			}
 		}
-		
-		
+
+
 	}
 
 }
