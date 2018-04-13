@@ -18,8 +18,7 @@ public class SalesReporter {
 	// private class variables declared
 	private double highestSales; // double variable to store highestSales
 	private double averageSales; // double variable to store value of average of sales
-	private Salesman[] team; // array of Salesman class called team that stores salesman instance in each of its method
-	private int numOfSalesman; // number of salesman which is basically like the length/size of the team array
+	ArrayList<Salesman> team; // array of Salesman class called team that stores salesman instance in each of its method
 
 	/**
 	 * This is the main method.
@@ -48,10 +47,6 @@ public class SalesReporter {
 	 */
 	// SalesReporter constructor
 	public SalesReporter() {
-		System.out.println("Enter numer of salesman:"); // guides the user to enter the number of salesman
-		Scanner myScanner = new Scanner(System.in); // creates a scanner instance to get user inputs
-
-		numOfSalesman = myScanner.nextInt(); // reads integer value from the user and stores it in numOfSalesman variable.
 	}
 
 	/**
@@ -64,23 +59,35 @@ public class SalesReporter {
 	// getData() method
 	public void getData() {
 		// defines the datatype of team array to be of Salesman class
-		team = new Salesman[numOfSalesman]; // sets the length of team array to numOfSalesman
-
+		team = new ArrayList<Salesman>(); // sets the length of team array to numOfSalesman
+		int i = 0;
+				
+		Scanner check = new Scanner(System.in);
 		// for loop to get to every index of team array
-		for(int i = 0 ; i < numOfSalesman ; i++) {
-			Scanner myScanner = new Scanner(System.in); // defines scanner instance to use it to read user inputs
-
+		while(true){
+			
 			System.out.println("Enter data for associate number " + (i+1)); // guides the user what Salesman number it is
 			System.out.print("Enter name: "); // guides the user to enter the name of salesman
+			
+			Scanner myScanner = new Scanner(System.in); // defines scanner instance to use it to read user inputs
+			
 			String name = myScanner.nextLine(); // reads the line as input which in turn stores it to a string name
 
 			System.out.print("Enter sales: $"); // guides the user to enter the sales of salesman
 			double sales = myScanner.nextDouble(); // reads the double value which in turn stores it to a variable called sales
 
-			team[i] = new Salesman(); // while running the loop over each of the index of array, let each index be an instance of the Salesman class
-			team[i].setName(name); // uses setter method to set name for that particular team array element
-			team[i].setSales(sales); // uses setter method to set sales for that particular team array element
-
+			Salesman mySalesman = new Salesman(); // while running the loop over each of the index of array, let each index be an instance of the Salesman class
+			mySalesman.setName(name); // uses setter method to set name for that particular team array element
+			mySalesman.setSales(sales); // uses setter method to set sales for that particular team array element
+			team.add(mySalesman);
+			i++;
+			
+			System.out.print("Do you want to add data for more salesman? ");
+			String test = check.nextLine();
+			
+			if(test.equalsIgnoreCase("no")) {
+				break;
+			}
 		}
 
 	}
@@ -96,11 +103,11 @@ public class SalesReporter {
 		double sum = 0; // initializes the sum as 0
 
 		// for loop to cover every element of the team array
-		for(int i=0 ; i < team.length ; i++) {
-			sum = sum + team[i].getSales(); // adds all the sales by using getter method where each elements of team array are instances of Salesman class
+		for(int i=0 ; i < team.size() ; i++) {
+			sum = sum + team.get(i).getSales(); // adds all the sales by using getter method where each elements of team array are instances of Salesman class
 		}
 
-		averageSales = sum/team.length; // calculates the average by dividing the calculated sum with the length of the team array and stores it to the variable defined in the class 
+		averageSales = sum/team.size(); // calculates the average by dividing the calculated sum with the length of the team array and stores it to the variable defined in the class 
 	}
 
 	/**
@@ -110,13 +117,13 @@ public class SalesReporter {
 	 */
 	// highestSales() method
 	public void highestSales() {
-		highestSales = team[0].getSales(); // first sets the highestSales to be of the first element
-
+		highestSales = team.get(0).getSales(); // first sets the highestSales to be of the first element
+		
 		// uses for loop to get into each index of the team array
-		for(int i=0 ; i < team.length ; i++) {
+		for(int i=0 ; i < team.size() ; i++) {
 			// if the i+1(next element) does not give over bound exception and the current element's sales was less than the next element's sales, 
-			if(((i+1) != team.length) && (team[i].getSales() < team[i+1].getSales())) {
-				highestSales = team[i+1].getSales(); // make the next element as the highest Sales
+			if(((i+1) != team.size()) && (team.get(i).getSales() < team.get(i+1).getSales())) {
+				highestSales = team.get(i+1).getSales(); // make the next element as the highest Sales
 			}
 		}
 
@@ -135,12 +142,12 @@ public class SalesReporter {
 
 		System.out.println("The following had the highest Sales: "); // shows the details of the Salesman who had the highest sales
 		// Since we dont know the index who had the highest Sales we run a for loop to check the whole array
-		for(int i = 0 ; i < team.length ; i++) {
+		for(int i = 0 ; i < team.size() ; i++) {
 			// if the sale of the element of a particular index at that point was equal to the value of highest sales stored,
-			if(team[i].getSales() == highestSales) {
-				System.out.println("Name: " + team[i].getName()); // print out its name
-				System.out.println("Sales: $" + team[i].getSales()); // and its sales
-				System.out.println("$" + ((team[i].getSales())-(averageSales)) + " above the average."); // and show how much the Salesman had it above average
+			if(team.get(i).getSales() == highestSales) {
+				System.out.println("Name: " + team.get(i).getName()); // print out its name
+				System.out.println("Sales: $" + team.get(i).getSales()); // and its sales
+				System.out.println("$" + ((team.get(i).getSales())-(averageSales)) + " above the average."); // and show how much the Salesman had it above average
 			}
 		}
 
@@ -148,17 +155,17 @@ public class SalesReporter {
 
 		System.out.println("The rest performed as follows: "); // now it shows how the rest of the elements except for the ones with highest Sale.
 		// runs a for loop to check the whole array
-		for(int i = 0 ; i < team.length ; i++) {
+		for(int i = 0 ; i < team.size() ; i++) {
 			// checks if the sales of that particular element is not the same as highest sales by using getter method
-			if(team[i].getSales() != highestSales) {
-				System.out.println("Name: " + team[i].getName()); // print out that Salesman's name
-				System.out.println("Sales: $" + team[i].getSales()); // their sales
+			if(team.get(i).getSales() != highestSales) {
+				System.out.println("Name: " + team.get(i).getName()); // print out that Salesman's name
+				System.out.println("Sales: $" + team.get(i).getSales()); // their sales
 				// checks if the Sales of that Salesman element is below or above average
-				if(team[i].getSales() < averageSales) {
-					System.out.println("$" + ((averageSales)-(team[i].getSales())) + " below the average.\n"); // prints this message if the sale of the Salesman is below the average
+				if(team.get(i).getSales() < averageSales) {
+					System.out.println("$" + ((averageSales)-(team.get(i).getSales())) + " below the average.\n"); // prints this message if the sale of the Salesman is below the average
 				} // or else
 				else {
-					System.out.println("$" + ((team[i].getSales())-(averageSales)) + " above the average.\n"); // prints this message if the sale of the Salesman is above the average
+					System.out.println("$" + ((team.get(i).getSales())-(averageSales)) + " above the average.\n"); // prints this message if the sale of the Salesman is above the average
 				}
 			}
 		}
