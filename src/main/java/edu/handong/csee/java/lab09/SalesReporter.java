@@ -3,7 +3,7 @@ package edu.handong.csee.java.lab09;
 
 // imports Scanner class to get user inputs
 import java.util.Scanner;
-
+import java.util.ArrayList;
 /**
  * This is a SalesReporter class that prints out sales of salesman.
  * <p>
