@@ -3,6 +3,7 @@ package edu.handong.csee.java.lab09;
 
 // imports Scanner class to get user inputs
 import java.util.Scanner;
+//imports ArrayList class to use arraylist methods and use an dynamic array that doesnt have limited predefined size
 import java.util.ArrayList;
 /**
  * This is a SalesReporter class that prints out sales of salesman.
