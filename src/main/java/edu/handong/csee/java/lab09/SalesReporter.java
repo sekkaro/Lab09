@@ -61,16 +61,16 @@ public class SalesReporter {
 		// defines the datatype of team arraylist to be of Salesman class
 		team = new ArrayList<Salesman>(); // creates a instance of ArrayList of type Salesman class as team
 		int i = 0; // initializes to value of i as 0
-				
+
 		Scanner check = new Scanner(System.in); // defines scanner to check if the user wants to keep reading
 		// while loop to repeat until user types no and read salesmen as index of team 
 		while(true){
-			
+
 			System.out.println("Enter data for associate number " + (i+1)); // guides the user what Salesman number it is
 			System.out.print("Enter name: "); // guides the user to enter the name of salesman
-			
+
 			Scanner myScanner = new Scanner(System.in); // defines scanner instance to use it to read user inputs
-			
+
 			String name = myScanner.nextLine(); // reads the line as input which in turn stores it to a string name
 
 			System.out.print("Enter sales: $"); // guides the user to enter the sales of salesman
@@ -81,10 +81,10 @@ public class SalesReporter {
 			mySalesman.setSales(sales); // uses setter method to set sales for that particular team array element
 			team.add(mySalesman); // uses .add() method of arraylist team to keeping adding salesman instance to its index and this increases the size of team
 			i++; // increments variable i to keep check of how many salesman have been added
-			
+
 			System.out.print("Do you want to add data for more salesman? "); // guides the user if they want to keep adding more salesmen
 			String test = check.nextLine(); // reads the user input as a line 
-			
+
 			// if the user types no (uses equalsIgnorecas3() method from string class to check without the cases)
 			if(test.equalsIgnoreCase("no")) {
 				break; // then get out of the loop and stop reading the input from user
@@ -119,7 +119,7 @@ public class SalesReporter {
 	// highestSales() method
 	public void highestSales() {
 		highestSales = team.get(0).getSales(); // first sets the highestSales to be of the first element
-		
+
 		// uses for loop to get into each index of the team arraylist
 		for(int i=0 ; i < team.size() ; i++) {
 			// if the i+1(next element) does not give over bound exception and the current element's sales was less than the next element's sales, 
